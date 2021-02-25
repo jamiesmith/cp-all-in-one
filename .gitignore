@@ -7,3 +7,4 @@ img_data
 **/confluent-hub-components/
 *.tar.gz
 log.*
+**/.DS_Storejolokia-jvm-1.6.2-agent.jar

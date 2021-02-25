@@ -24,7 +24,7 @@ services:
       - zookeeper
     ports:
       - "9091:9091"
-      - "8771:8771"
+      - "9101:9101"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -37,7 +37,8 @@ services:
       KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_JMX_OPTS: '-javaagent:/home/appuser/jolokia.jar=port=8771,host=broker1 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: broker1
       KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker1:29091
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
@@ -48,11 +49,6 @@ services:
       - co.elastic.metrics/module=kafka
       - co.elastic.metrics/metricsets=partition,consumergroup
       - co.elastic.metrics/hosts='$${data.container.name}:9091'
-      - co.elastic.metrics/1.module=kafka
-      - co.elastic.metrics/1.metricsets=broker
-      - co.elastic.metrics/1.hosts='$${data.container.name}:8771'
-    volumes:
-      - ./jolokia-jvm-1.6.2-agent.jar:/home/appuser/jolokia.jar
 
   broker2:
     image: confluentinc/cp-server:6.1.0
@@ -62,7 +58,7 @@ services:
       - zookeeper
     ports:
       - "9092:9092"
-      - "8772:8772"
+      - "9102:9102"
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -75,7 +71,8 @@ services:
       KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_JMX_OPTS: '-javaagent:/home/appuser/jolokia.jar=port=8772,host=broker2 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
+      KAFKA_JMX_PORT: 9102
+      KAFKA_JMX_HOSTNAME: broker2
       KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker2:29092
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
@@ -86,11 +83,6 @@ services:
       - co.elastic.metrics/module=kafka
       - co.elastic.metrics/metricsets=partition,consumergroup
       - co.elastic.metrics/hosts='$${data.container.name}:9092'
-      - co.elastic.metrics/1.module=kafka
-      - co.elastic.metrics/1.metricsets=broker
-      - co.elastic.metrics/1.hosts='$${data.container.name}:8772'
-    volumes:
-      - ./jolokia-jvm-1.6.2-agent.jar:/home/appuser/jolokia.jar
 
   broker3:
     image: confluentinc/cp-server:6.1.0
@@ -100,7 +92,7 @@ services:
       - zookeeper
     ports:
       - "9093:9093"
-      - "8773:8773"
+      - "9103:9103"
     environment:
       KAFKA_BROKER_ID: 3
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -113,7 +105,8 @@ services:
       KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_JMX_OPTS: '-javaagent:/home/appuser/jolokia.jar=port=8773,host=broker3 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
+      KAFKA_JMX_PORT: 9103
+      KAFKA_JMX_HOSTNAME: broker3
       KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker3:29093
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
@@ -124,11 +117,6 @@ services:
       - co.elastic.metrics/module=kafka
       - co.elastic.metrics/metricsets=partition,consumergroup
       - co.elastic.metrics/hosts='$${data.container.name}:9091'
-      - co.elastic.metrics/1.module=kafka
-      - co.elastic.metrics/1.metricsets=broker
-      - co.elastic.metrics/1.hosts='$${data.container.name}:8773'
-    volumes:
-      - ./jolokia-jvm-1.6.2-agent.jar:/home/appuser/jolokia.jar
 
   schema-registry:
     image: confluentinc/cp-schema-registry:6.1.0

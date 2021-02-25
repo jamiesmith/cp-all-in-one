@@ -6,12 +6,13 @@ You can find the documentation and instructions for this repo at [https://docs.c
 
 ## Description of files
 
-- `docker-compose-as-shipped.yml` - docker-compose.yml as it appeared in the forked repo
-- `docker-compose-broker1.yml`  - docker-compose.yml with just one broker, before adding labels
-- `docker-compose-three-brokers.yml`  - docker-compose.yml with three brokers, before adding labels
-- `docker-compose-zookeeper-and-broker.yml`  - docker-compose.yml with ZooKeeper, consumergroup, and partition metricsets
-- `docker-compose.yml`  - docker-compose.yml in its final state, with the addition of the broker metricset and jolokia
-- `filebeat.docker.yml` - filebeat docker configuration
-- `filebeat.sh` - script to setup and start Filebeat
-- `metricbeat.docker.yml` - Metricbeat docker configuration
-- `metricbeat.sh` - script to setup and start Metricbeat
+- [`docker-compose-as-shipped.yml`](docker-compose-as-shipped.yml) - docker-compose.yml as it appeared in the forked repo
+- [`docker-compose-broker1.yml` ](docker-compose-broker1.yml`) - docker-compose.yml with just one broker, before adding labels
+- [`docker-compose-three-brokers.yml` ](docker-compose-three-brokers.yml`) - docker-compose.yml with three brokers, before adding labels
+- [`docker-compose-zookeeper-and-broker.yml` ](docker-compose-zookeeper-and-broker.yml`) - docker-compose.yml with ZooKeeper, consumergroup, and partition metricsets
+- [`docker-compose.yml` ](docker-compose.yml`) - docker-compose.yml in its final state, with the addition of the broker metricset and jolokia
+- [`filebeat.docker.yml`]() - filebeat docker configuration
+- [`filebeat.sh`](filebeat.sh) - script to setup and start Filebeat
+- [`metricbeat.docker.yml`](metricbeat.docker.yml) - Metricbeat docker configuration
+- [`metricbeat.sh`](metricbeat.sh) - script to setup and start Metricbeat
+
